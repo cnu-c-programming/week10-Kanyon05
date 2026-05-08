@@ -64,14 +64,12 @@ int main() {
         if (strcmp(action, "add") == 0) {
             scanf("%s %d", name, &score);
             add(&student_list, name, score);
-            printf("Student added: %s with score %d\n", student_list.head->name, student_list.head->score);
         } else if (strcmp(action, "delete") == 0) {
             scanf("%s", name);
             Student* current = student_list.head;
             while (current != NULL) {
                 if (strcmp(current->name, name) == 0) {
                     delete(current);
-                    printf("Student deleted: %s\n", name);
                     break;
                 }
                 current = current->next;
