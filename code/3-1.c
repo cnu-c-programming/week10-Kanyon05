@@ -8,7 +8,7 @@ typedef struct Student {
     struct Student* next;
 } Student;
 
-typedef struct {
+typedef struct list {
     Student* head;
     int size;
 } list;
@@ -38,9 +38,24 @@ void add(list* lst, const char* name, int score) {
 }
 
 
-void delete(struct Student* student) {
-    student->name[0] = '\0';
-    student->score = 0;
+void delete(list* lst, const char* name) {
+    Student* current = lst->head;
+    Student* previous = NULL;
+
+    while (current != NULL) {
+        if (strcmp(current->name, name) == 0) {
+            if (previous == NULL) {
+                lst->head = current->next;
+            } else {
+                previous->next = current->next;
+            }
+            free(current);
+            lst->size--;
+            return;
+        }
+        previous = current;
+        current = current->next;
+    }
 }
 
 void print(const list* lst) {
@@ -69,7 +84,7 @@ int main() {
             Student* current = student_list.head;
             while (current != NULL) {
                 if (strcmp(current->name, name) == 0) {
-                    delete(current);
+                    delete(&student_list, name);
                     break;
                 }
                 current = current->next;
