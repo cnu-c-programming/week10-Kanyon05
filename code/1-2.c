@@ -13,7 +13,7 @@ int main() {
     struct IPv4 s;
     s.version = 0;
     s.ihl = 0;
-    s.ttl = 0;
+    s.ttl = 256;
     s.protocol = 0;
     sprintf(s.data, "hello, world!");
 
@@ -21,5 +21,5 @@ int main() {
     printf("ihl: %u, size: %zu\n", s.ihl, sizeof(s.ihl));
     printf("ttl: %llu, size: %zu\n", s.ttl, sizeof(s.ttl));
     printf("protocol: %llu, size: %zu\n", s.protocol, sizeof(s.protocol));
-    printf("data: %s\n", s.data);
+    printf("data: %s, size: %zu\n", s.data, sizeof(s.data));
 }
